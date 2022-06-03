@@ -1,11 +1,11 @@
 #include <stdlib.h>
 #include <time.h>
-/* more headers goes there */
+#include <stdio.h>
 
-/* 
- * main -  
+/**
+ * main - Checks if random no is positive, negative or zero
  *
- * Returns: 0 (Success)
+ * Return: Always 0 (Success)
  */
 
 int main(void)
@@ -24,7 +24,7 @@ int main(void)
 	{
 		printf("%d is negative\n", n);
 	}
-	else 
+	else
 	{
 		printf("%d is zero\n", n)
 	}
