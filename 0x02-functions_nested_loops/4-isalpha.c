@@ -4,7 +4,7 @@
  * _isalpha - function that checks for an alphabetic character
  * @c: character to be tested
  *
- * Return: 1 if lowercase; else 0
+ * Return: 1 if a letter (lower or uppercase); else 0
  */
 
 int _isalpha(int c)
