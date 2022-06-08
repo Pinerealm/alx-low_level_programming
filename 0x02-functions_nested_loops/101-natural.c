@@ -8,8 +8,6 @@
  * Return: Always 0 (Success)
  */
 
-void sum_mult_3_or_5(void);
-
 int main(void)
 {
 	int i;
