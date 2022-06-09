@@ -21,7 +21,7 @@ int main(void)
 			sum += next;
 		}
 		i = j;
-		j = sum;
+		j = next;
 	}
 	printf("%d\n", sum);
 
