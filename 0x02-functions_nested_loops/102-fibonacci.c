@@ -19,7 +19,7 @@ int main(void)
 	{
 		sum = i + j;
 		if (n == 47)
-			printf("%lu ", sum);
+			printf("%lu", sum);
 		else
 			printf("%lu, ", sum);
 		i = j;
