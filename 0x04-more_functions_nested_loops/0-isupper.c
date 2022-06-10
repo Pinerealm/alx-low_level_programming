@@ -12,9 +12,9 @@ int _isupper(int c)
 	char L;
 	int res = 0;
 
-	for (L = 'A'; L <= 'Z'; l++)
+	for (L = 'A'; L <= 'Z'; L++)
 	{
-		if (L == c)
+		if (c == L)
 		{
 			res = 1;
 		}
