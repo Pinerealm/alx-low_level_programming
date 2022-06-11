@@ -13,7 +13,7 @@ int main(void)
 {
 	int i, j = 1;
 
-	printf("%d", j)
+	printf("%d", j);
 	for (i = 2; i <= 100; i++)
 	{
 		if (i % 15 == 0)
