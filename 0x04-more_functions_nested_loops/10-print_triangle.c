@@ -1,10 +1,7 @@
 #include "main.h"
 
 /**
- * main - prints numbers 1-100: prints 'Fizz' if number is a multiple of 3,
- * Buzz if number is a multiple of 5, and FizzBuzz if a multiple of
- * both 3 and 5
- *
+ * print_triangle - prints a triangle followed by a new line
  * @size: size of the triangle
  *
  * Return: Always (0)
