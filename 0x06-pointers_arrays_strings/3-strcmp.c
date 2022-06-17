@@ -13,12 +13,9 @@ int _strlen(char *s);
 
 int _strcmp(char *s1, char *s2)
 {
-	int i, u_len, len_s1 = _strlen(s1);
-	int len_s2 = _strlen(s2);
+	int i, len_s1 = _strlen(s1);
 
-	u_len = (len_s1 < len_s2) ? len_s1 : len_s2;
-
-	for (i = 0; i < u_len; i++)
+	for (i = 0; i < len_s1; i++)
 	{
 		if (s1[i] < s2[i])
 			return (s1[i] - s2[i]);
