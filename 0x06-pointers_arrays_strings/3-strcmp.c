@@ -8,7 +8,7 @@ int _strlen(char *s);
  * @s1: pointer to first string
  * @s2: pointer to second string
  *
- * Return: 0 if equal, a negative no if less than, a positive no otherwise
+ * Return: 0 if equal: a negative no if s1 < s2: otherwise a positive no
  */
 
 int _strcmp(char *s1, char *s2)
@@ -17,20 +17,18 @@ int _strcmp(char *s1, char *s2)
 
 	for (i = 0; i < len_s1; i++)
 	{
-		if (s1[i] < s2[i])
-			return (s1[i] - s2[i]);
-		else
+		if (s1[i] != s2[i])
 			return (s1[i] - s2[i]);
 	}
 	return (0);
 }
 
 /**
-* _strlen - get string length
-* @s: pointer to string
-*
-* Return: dest
-*/
+ * _strlen - get string length
+ * @s: pointer to string
+ *
+ * Return: string length
+ */
 
 int _strlen(char *s)
 {
