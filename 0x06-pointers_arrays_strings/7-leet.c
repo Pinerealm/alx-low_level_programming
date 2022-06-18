@@ -20,9 +20,7 @@ char *leet(char *s)
 	{
 		for (l = 0; l < len_ci; l++)
 		{
-			if (s[c] != cipher[l] && s[c] != (cipher[l] - 32))
-				continue;
-			else
+			if (s[c] == cipher[l] || s[c] == (cipher[l] - 32))
 				s[c] = repl[l];
 		}
 		c++;
