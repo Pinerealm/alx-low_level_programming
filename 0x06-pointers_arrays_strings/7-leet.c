@@ -6,22 +6,22 @@ int _strlen(char *s);
  * *leet - encodes a string: replaces certain letters with numbers
  * @s: pointer to a string
  *
- * Return: str
+ * Return: s
  */
 
 char *leet(char *s)
 {
-	char cipher[] = "aeotl";
-	char repl[] = "43071";
+	char cipher[] = "aeotlAEOTL";
+	char repl[] = "4307143071";
 	int len_ci = _strlen(cipher);
 	int l, c = 0;
 
-	while (s[c] != '\0')
+	while (*(s + c) != '\0')
 	{
 		for (l = 0; l < len_ci; l++)
 		{
-			if (s[c] == cipher[l] || s[c] == (cipher[l] - 32))
-				s[c] = repl[l];
+			if (*(s + c) == cipher[l])
+				*(s + c) = repl[l];
 		}
 		c++;
 	}
