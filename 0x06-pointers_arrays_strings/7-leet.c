@@ -11,36 +11,17 @@ int _strlen(char *s);
 
 char *leet(char *s)
 {
-	char cipher[] = "aeotlAEOTL";
-	char repl[] = "4307143071";
-	int len_ci = _strlen(cipher);
-	int l, c = 0;
+	char cipher[] = "aeotl";
+	char repl[] = "43071";
+	int l, c;
 
-	while (*(s + c) != '\0')
+	for (c = 0; s[c] != '\0'; c++)
 	{
-		for (l = 0; l < len_ci; l++)
+		for (l = 0; cipher[l] != '\0'; l++)
 		{
-			if (*(s + c) == cipher[l])
-				*(s + c) = repl[l];
+			if (s[c] == cipher[l] || s[c] == (cipher[l] - 32))
+				s[c] = repl[l];
 		}
-		c++;
 	}
 	return (s);
-}
-
-/**
- * _strlen - get string length
- * @s: pointer to string
- *
- * Return: dest
- */
-
-int _strlen(char *s)
-{
-	int cnt = 0;
-
-	while (*(s + cnt) != '\0')
-		cnt++;
-
-	return (cnt);
 }
