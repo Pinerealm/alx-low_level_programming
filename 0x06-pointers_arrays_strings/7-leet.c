@@ -3,7 +3,7 @@
 int _strlen(char *s);
 
 /**
- * leet - encodes a string: replaces certain letters with numbers
+ * *leet - encodes a string: replaces certain letters with numbers
  * @s: pointer to a string
  *
  * Return: str
