@@ -11,12 +11,12 @@ char *rot13(char *s)
 {
 	int i = 0, j;
 	char alphab_lu[52] = {'A', 'B', 'C', 'D', 'E', 'F',
-                        'G', 'H', 'I', 'J', 'K', 'L',
+			'G', 'H', 'I', 'J', 'K', 'L',
 			'M', 'N', 'O', 'P', 'Q', 'R',
 			'S', 'T', 'U', 'V', 'W', 'X',
 			'Y', 'Z', 'a', 'b', 'c', 'd',
 			'e', 'f', 'g', 'h', 'i', 'j',
-		        'k', 'l', 'm', 'n', 'o', 'p',
+			'k', 'l', 'm', 'n', 'o', 'p',
 			'q', 'r', 's', 't', 'u', 'v',
 			'w', 'x', 'y', 'z'};
 	char cipher[52] = {'N', 'O', 'P', 'Q', 'R', 'S',
@@ -36,10 +36,10 @@ char *rot13(char *s)
 			if (s[i] == alphab_lu[j])
 			{
 				s[i] = cipher[j];
-                                break;
+				break;
 			}
 		}
-                i++;
+		i++;
 	}
 	return (s);
 }
