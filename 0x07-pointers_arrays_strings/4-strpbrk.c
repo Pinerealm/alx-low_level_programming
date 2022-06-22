@@ -7,7 +7,7 @@
  * @s: pointer to a string
  * @accept: characters to find
  *
- * Return: lowest location of any of the characters
+ * Return: lowest location of any of the characters or NULL
  */
 
 char *_strpbrk(char *s, char *accept)
@@ -25,5 +25,10 @@ char *_strpbrk(char *s, char *accept)
 			}
 		}
 	}
-	return (s + loc);
+	if (loc)
+	{
+		return (s + loc);
+	}
+	else
+		return ('\0');
 }
