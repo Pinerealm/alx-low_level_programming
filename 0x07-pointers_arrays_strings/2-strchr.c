@@ -6,7 +6,7 @@
  * @s: pointer to string
  * @c: source memory area
  *
- * Return: pointer to first occurrence of c
+ * Return: pointer to first occurrence of c or NULL
  */
 
 char *_strchr(char *s, char c)
