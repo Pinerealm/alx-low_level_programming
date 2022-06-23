@@ -6,7 +6,7 @@ int _sqrt(int n, int i);
  * _sqrt_recursion - apply the _sqrt function with i equals 1
  * @n: number
  *
- * Return: natural square root of n, -1 if not natural 
+ * Return: natural square root of n, -1 if not natural
  */
 
 int _sqrt_recursion(int n)
@@ -19,7 +19,7 @@ int _sqrt_recursion(int n)
  * @n: number to calculate from
  * @i: test no
  *
- * Return: natural square root of n, -1 if not natural 
+ * Return: natural square root of n, -1 if not natural
  */
 
 int _sqrt(int n, int i)
