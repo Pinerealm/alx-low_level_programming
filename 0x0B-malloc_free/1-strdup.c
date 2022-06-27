@@ -13,10 +13,11 @@ int _strlen(char *s);
 char *_strdup(char *str)
 {
 	char *ar;
-	int i, len_s = _strlen(str);
+	int i, len_s;
 
-	if (!*str)
+	if (!str)
 		return ('\0');
+	len_s = _strlen(str);
 	ar = malloc(sizeof(char) * len_s + 1);
 	if (ar == NULL)
 		return ('\0');
@@ -27,7 +28,6 @@ char *_strdup(char *str)
 	ar[i] = '\0';
 	return (ar);
 }
-
 /**
  * _strlen - finds the length of a string
  * @s: pointer to a string
