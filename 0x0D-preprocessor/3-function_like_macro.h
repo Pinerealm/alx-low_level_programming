@@ -1,7 +1,5 @@
-#ifndef _OBJECT_LIKE_MACRO_
-#define _OBJECT_LIKE_MACRO_
-#define SIZE 1024
-#define PI 3.14159265359
+#ifndef _FUNCTION_LIKE_MACRO_
+#define _FUNCTION_LIKE_MACRO_
 
 #define ABS(x) (((x) < 0) ? (x * -1) : (x))
 
