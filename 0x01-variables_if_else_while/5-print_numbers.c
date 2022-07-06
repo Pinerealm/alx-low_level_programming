@@ -1,5 +1,3 @@
-#include <stdlib.h>
-#include <time.h>
 #include <stdio.h>
 
 /**
@@ -11,11 +9,11 @@
 
 int main(void)
 {
-	int n;
+	char n;
 
-	for (n = 0; n < 10; n++)
+	for (n = 48; n < 58; n++)
 	{
-		printf("%d", n);
+		printf("%c", n);
 	}
 	printf("\n");
 
