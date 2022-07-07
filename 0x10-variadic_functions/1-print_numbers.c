@@ -4,7 +4,7 @@
 /**
  * print_numbers - prints numbers seperated by a seperator
  * @separator: character seperating numbers
- * @n: number of parameters to sum up
+ * @n: no of numbers to print
  *
  * Return: void
  */
