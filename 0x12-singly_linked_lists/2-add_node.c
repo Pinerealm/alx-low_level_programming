@@ -1,12 +1,13 @@
 #include "lists.h"
 
-int _strlen(char *s);
+int _strlen(const char *s);
 
 /**
- * list_len - gets the no of elements in a linked list_t list
- * @h: pointer to the head of the list
+ * add_node - adds a new node at the beginning of a list_t list
+ * @head: pointer to the head of the list
+ * @str: string to add to the new node
  *
- * Return: number of nodes in the list
+ * Return: pointer to the new node, or NULL if it failed
  */
 list_t *add_node(list_t **head, const char *str)
 {
@@ -25,9 +26,9 @@ list_t *add_node(list_t **head, const char *str)
 		return (new);
 	}
 	temp = *head;
-	while (temp->next != NULL)
-		temp = temp->next;
-	temp->next = new;
+	*head = new;
+	new->next = temp;
+
 	return (new);
 }
 
@@ -37,7 +38,7 @@ list_t *add_node(list_t **head, const char *str)
  *
  * Return: string length (int)
  */
-int _strlen(char *s)
+int _strlen(const char *s)
 {
 	int cnt = 0;
 
