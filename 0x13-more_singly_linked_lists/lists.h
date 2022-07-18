@@ -32,5 +32,6 @@ int pop_listint(listint_t **);
 
 listint_t *get_nodeint_at_index(listint_t *, unsigned int);
 int sum_listint(listint_t *);
+listint_t *insert_nodeint_at_index(listint_t **, unsigned int, int);
 
 #endif /* LISTS_H */
