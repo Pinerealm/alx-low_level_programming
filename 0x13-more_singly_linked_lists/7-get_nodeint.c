@@ -3,7 +3,7 @@
 /**
  * get_nodeint_at_index - gets the node at a given index
  *
- * @head: address to the head pointer of the list
+ * @head: head pointer of the list
  * @index: index of the node to get
  *
  * Return: address of the node at the given index, or NULL if not existing
