@@ -8,7 +8,7 @@
  */
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int i, j = 32, k;
+	unsigned int i, j, k;
 
 	if (b == NULL)
 		return (0);
@@ -19,6 +19,7 @@ unsigned int binary_to_uint(const char *b)
 	}
 
 	i = 0;
+	j = sizeof(unsigned int) * 8;
 	k = 0;
 	while (b[i])
 	{
