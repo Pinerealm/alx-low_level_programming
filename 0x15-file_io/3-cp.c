@@ -6,8 +6,8 @@ void print_invalid_close(int res, int fd);
 /**
  * main - copies the contents of a file to another file
  *
- * @ac: number of arguments
- * @av: array of arguments
+ * @ac: number of command line arguments
+ * @av: array of command line arguments
  *
  * Return: 0 on success, 1 on failure
  */
@@ -23,7 +23,7 @@ int main(int ac, char **av)
 	}
 
 	fd = open(av[1], O_RDONLY);
-	fd2 = open(av[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
+	fd2 = open(av[2], O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0664);
 	/* if open fails */
 	print_invalid_fd(fd, fd2, av);
 
@@ -34,10 +34,10 @@ int main(int ac, char **av)
 	{
 		bytes_written = write(fd2, buffer, bytes_read);
 		/* if write fails */
-		print_invalid_fd(bytes_read, bytes_written, av);
+		print_invalid_fd(0, bytes_written, av);
 	}
 	/* if read fails */
-	print_invalid_fd(bytes_read, bytes_written, av);
+	print_invalid_fd(bytes_read, 0, av);
 	free(buffer);
 
 	close_res = close(fd);
