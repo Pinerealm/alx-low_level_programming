@@ -4,7 +4,7 @@
  * hash_table_set - adds an element to the hash table
  *
  * @ht: hash table to add or update the key/value to
- * @key: key
+ * @key: key to be hashed
  * @value: value associated with the key
  *
  * Return: 1 on success, 0 otherwise
