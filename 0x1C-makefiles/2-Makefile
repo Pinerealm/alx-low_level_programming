@@ -1,6 +1,6 @@
-CC := gcc
+CC = gcc
 SRC := $(wildcard *.c)
-OBJ := $(SRC:.c=.o)
+OBJ = $(SRC:.c=.o)
 NAME = school
 
 all: $(NAME)
@@ -8,5 +8,5 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $^ -o $@
 
-$(OBJ): $(SRC)
-	$(CC) -c $^
+%.o: %.c %.h
+	$(CC) -c $^ -o $@
