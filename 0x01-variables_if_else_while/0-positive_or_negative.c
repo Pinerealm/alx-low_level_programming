@@ -3,19 +3,18 @@
 #include <stdio.h>
 
 /**
- * main - Checks if a random no is positive, negative or zero
+ * main - Entry point
  *
- * Return: Always 0 (Success)
+ * Description: Prints whether the number stored in the variable n is
+ * positive or negative.
+ * Return: 0 (on success)
  */
-
 int main(void)
 {
 	int n;
 
 	srand(time(0));
 	n = rand() - RAND_MAX / 2;
-	/* your code goes there */
-
 	if (n > 0)
 		printf("%d is positive\n", n);
 	else if (n < 0)
