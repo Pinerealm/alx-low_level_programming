@@ -9,7 +9,7 @@
  */
 int main(void)
 {
-	char num1, num2;
+	int num1, num2;
 
 	num1 = '0';
 	while (num1 <= '9')
