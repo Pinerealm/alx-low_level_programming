@@ -1,42 +1,42 @@
-#include <stdlib.h>
 #include <stdio.h>
 
 /**
- * main - prints all possible different combinations of three digits.
+ * main - Entry point
  *
- * Return: Always 0 (Success)
+ * Description: prints all possible different combinations of three digits
+ * using putchar without using char variables
+ * Return: 0 (on success)
  */
-
 int main(void)
 {
-	int n1, n2, n3;
+	int num1, num2, num3;
 
-	n3 = 0;
-	while (n3 < 10)
+	num1 = '0';
+	while (num1 <= '9')
 	{
-		n2 = 0;
-		while (n2 < 10)
+		num2 = '1';
+		while (num2 <= '9')
 		{
-			n1 = 0;
-			while (n1 < 10)
+			num3 = '2';
+			while (num3 <= '9')
 			{
-				if (n1 != n2 && n2 != n3 && n3 < n2 && n2 < n1)
+				if (num1 < num2 && num2 < num3)
 				{
-					putchar('0' + n3);
-					putchar('0' + n2);
-					putchar('0' + n1);
-
-					if (n3 + n2 + n1 != 9 + 8 + 7)
+					putchar(num1);
+					putchar(num2);
+					putchar(num3);
+					if (!(num1 == '7' && num2 == '8'
+						&& num3 == '9'))
 					{
 						putchar(',');
 						putchar(' ');
 					}
 				}
-				n1++;
+				num3++;
 			}
-			n2++;
+			num2++;
 		}
-		n3++;
+		num1++;
 	}
 	putchar('\n');
 
