@@ -1,31 +1,35 @@
-#include <stdlib.h>
 #include <stdio.h>
 
 /**
- * main - prints all possible different combinations of two digit
+ * main - Entry point
  *
- * Return: Always 0 (Success)
+ * Description: prints all single digit numbers of base 10 starting from 0
+ * using putchar without char variables
+ * Return: 0 (on success)
  */
-
 int main(void)
 {
-	int n1, n2;
+	char num1, num2;
 
-	for (n1 = 0; n1 < 10; n1++)
+	num1 = '0';
+	while (num1 <= '9')
 	{
-		for (n2 = 1; n2 < 10; n2++)
+		num2 = '1';
+		while (num2 <= '9')
 		{
-			if (n1 != n2 && n1 < n2)
+			if (num1 < num2)
 			{
-				putchar(n1 + '0');
-				putchar(n2 + '0');
-
-				if (n1 == 8 && n2 == 9)
-					continue;
-				putchar(',');
-				putchar(' ');
+				putchar(num1);
+				putchar(num2);
+				if (!(num1 == '8' && num2 == '9'))
+				{
+					putchar(',');
+					putchar(' ');
+				}
 			}
+			num2++;
 		}
+		num1++;
 	}
 	putchar('\n');
 
