@@ -1,3 +1,10 @@
 test.c
 a.out
 _putchar.c
+*main.[cos]
+.gitignore
+school
+*main.py
+__pycache__
+c*
+size64
