@@ -31,18 +31,19 @@ int main(void)
 	{
 		sum = i + j;
 		extra = i1 + j1;
-
 		if (extra > billion)
 		{
 			sum += extra / billion;
 			extra = extra % billion;
 		}
-		printf("%lu%lu, ", sum, extra);
+		if (count == 95)
+			printf("%lu%lu", sum, extra);
+		else
+			printf("%lu%lu, ", sum, extra);
 		i = j;
 		i1 = j1;
 		j = sum;
 		j1 = extra;
-
 		count++;
 	}
 	printf("\n");
