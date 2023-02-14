@@ -2,19 +2,14 @@
 
 /**
  * print_line - draws a straight line in the terminal
- * @n: number of times to draw line
- *
- * Return: void
+ * @n: number of times the character _ should be printed
  */
-
 void print_line(int n)
 {
-	int i = 1;
-
-	while (i > 0 && i <= n)
+	if (n > 0)
 	{
-		_putchar('_');
-		i++;
+		while (n--) /* decrement n until it reaches 0 */
+			_putchar('_');
 	}
 	_putchar('\n');
 }
