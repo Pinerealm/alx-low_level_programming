@@ -10,6 +10,7 @@
 int main(void)
 {
 	unsigned long i = 1, j = 2, i1, j1, sum, extra;
+	unsigned long billion = 1000000000;
 	short count = 0;
 
 	printf("%lu, %lu, ", i, j);
@@ -21,15 +22,21 @@ int main(void)
 		j = sum;
 		count++;
 	}
-	i1 = i % 1000000000;
-	j1 = j % 1000000000;
-	i = i / 1000000000;
-	j = j / 1000000000;
+	i1 = i % billion;
+	j1 = j % billion;
+	i = i / billion;
+	j = j / billion;
 
 	while (count < 96)
 	{
 		sum = i + j;
 		extra = i1 + j1;
+
+		if (extra > billion)
+		{
+			sum += extra / billion;
+			extra = extra % billion;
+		}
 		printf("%lu%lu, ", sum, extra);
 		i = j;
 		i1 = j1;
