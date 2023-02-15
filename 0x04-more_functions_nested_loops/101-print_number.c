@@ -6,15 +6,15 @@
  */
 void print_number(int n)
 {
-	int num, divisor = 1, digits = 0;
+	unsigned int num = n, divisor = 1, digits = 0;
 
 	if (n < 0)
 	{
 		_putchar('-');
+		num = -num;
 		n = -n;
 	}
 	/* Get the no of digits in n */
-	num = n;
 	while (num > 0)
 	{
 		num /= 10;
