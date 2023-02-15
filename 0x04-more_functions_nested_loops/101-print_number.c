@@ -26,7 +26,7 @@ void print_number(int n)
 		divisor *= 10;
 		digits--;
 	}
-	/* Print the number */
+	/* Print each digit of the number */
 	while (divisor > 0)
 	{
 		_putchar((n / divisor) % 10 + '0');
