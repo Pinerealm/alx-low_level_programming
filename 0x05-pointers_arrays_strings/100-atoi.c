@@ -9,7 +9,7 @@ int _isdigit(char c);
  */
 int _atoi(char *s)
 {
-	int res, idx, num_idx, num_len, sign;
+	int res, idx, num_idx, num_len, sign, tmp;
 
 	res = idx = num_len = sign = 0;
 	while (s[idx] != '\0')
@@ -20,17 +20,15 @@ int _atoi(char *s)
 			idx++;
 			continue;
 		}
-		else if (s[idx] == '+')
-		{
-			sign--;
-			idx++;
-			continue;
-		}
 		if (_isdigit(s[idx]))
 		{
 			num_idx = idx;
 			while (_isdigit(s[idx]))
 			{
+				tmp = s[idx] - '0';
+				if (sign % 2)
+					tmp = -tmp;
+				res = res * 10 + tmp;
 				idx++;
 			}
 			num_len = idx - num_idx;
@@ -39,16 +37,6 @@ int _atoi(char *s)
 			break;
 		idx++;
 	}
-	idx = num_idx;
-	while (num_len > 0)
-	{
-		res = res * 10 + (s[idx] - '0');
-		num_len--;
-		idx++;
-	}
-	if (sign > 0 && res > 0)
-		res *= -1;
-
 	return (res);
 }
 
