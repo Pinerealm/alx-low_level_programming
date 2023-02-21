@@ -1,53 +1,38 @@
 #include "main.h"
 
-int _strlen(char *s);
-
 /**
- * *cap_string - capitalises the first letter of all the words of a string
+ * cap_string - capitalizes all words of a string
+ * @s: string to modify
  *
- * @str: pointer to string
- *
- * Return: str
+ * Return: pointer to the resulting string
  */
-
-char *cap_string(char *str)
+char *cap_string(char *s)
 {
-	char punct[] = "\t\n,;.!?\"(){}";
-	int i, sep, len_s = _strlen(str);
-	int len_p = _strlen(punct);
+	int idx = 0, sep_idx;
+	char word_seps[] = " \t\n,;.!?\"(){}";
 
-	if (str[0] >= 97 && str[0] <= 122)
-		str[0] -= 32;
-
-	for (i = 1; i < len_s; i++)
+	while (s[idx] != '\0')
 	{
-		if (str[i] == ' ' && str[i + 1] >= 97 && str[i + 1] <= 122)
-			str[i + 1] -= 32;
-		for (sep = 0; sep < len_p; sep++)
+		if (idx == 0 && s[idx] >= 'a' && s[idx] <= 'z')
 		{
-			if (str[i] != punct[sep])
-				continue;
-			else
-				if (str[i + 1] >= 'a' && str[i + 1] <= 'z')
-					str[i + 1] -= 32;
+			s[idx] -= 32;
+			idx++;
+			continue;
 		}
+		sep_idx = 0;
+		while (word_seps[sep_idx] != '\0')
+		{
+			if (s[idx] == word_seps[sep_idx] && s[idx + 1] >= 'a'
+				&& s[idx + 1] <= 'z')
+			{
+				s[idx + 1] -= 32;
+				idx++;
+				break;
+			}
+			sep_idx++;
+		}
+		idx++;
 	}
-	return (str);
-}
 
-/**
- * _strlen - get string length
- * @s: pointer to string
- *
- * Return: dest
- */
-
-int _strlen(char *s)
-{
-	int cnt = 0;
-
-	while (*(s + cnt) != '\0')
-		cnt++;
-
-	return (cnt);
+	return (s);
 }
