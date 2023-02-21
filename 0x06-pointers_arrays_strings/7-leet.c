@@ -4,7 +4,7 @@
  * leet - encodes a string into 1337
  * @s: string to modify
  *
- * Description: Replaces letters with numbers. a/A = 4, e/E = 3, o/O = 0, 
+ * Description: Replaces letters with numbers. a/A = 4, e/E = 3, o/O = 0,
  * t/T = 7, l/L = 1
  * Return: pointer to the resulting string
  */
