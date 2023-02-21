@@ -7,7 +7,7 @@
  *
  * Return: 0 if equal, a negative no. if s1 < s2, otherwise a positive no.
  */
-char *_strcmp(char *s1, char *s2)
+int _strcmp(char *s1, char *s2)
 {
 	int idx = 0;
 
