@@ -17,8 +17,7 @@ char *_strncpy(char *dest, char *src, int n)
 		dest[idx] = src[idx];
 		idx++;
 	}
-	if (src[idx] == '\0')
-		dest[idx] = src[idx];
+	dest[idx] = '\0';
 
 	return (dest);
 }
