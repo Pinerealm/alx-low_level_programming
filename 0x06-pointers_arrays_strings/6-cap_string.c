@@ -11,14 +11,10 @@ char *cap_string(char *s)
 	int idx = 0, sep_idx;
 	char word_seps[] = " \t\n,;.!?\"(){}";
 
+	if (s[0] >= 'a' && s[0] <= 'z')
+		s[idx++] -= 32;
 	while (s[idx] != '\0')
 	{
-		if (idx == 0 && s[idx] >= 'a' && s[idx] <= 'z')
-		{
-			s[idx] -= 32;
-			idx++;
-			continue;
-		}
 		sep_idx = 0;
 		while (word_seps[sep_idx] != '\0')
 		{
