@@ -18,7 +18,10 @@ char *rot13(char *s)
 		while (alpha[sdx] != '\0')
 		{
 			if (s[idx] == alpha[sdx])
+			{
 				s[idx] = rot13[sdx];
+				break;
+			}
 			sdx++;
 		}
 		idx++;
