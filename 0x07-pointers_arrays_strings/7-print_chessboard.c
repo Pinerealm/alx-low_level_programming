@@ -2,20 +2,18 @@
 
 /**
  * print_chessboard - prints the chessboard
- *
- * @a: array containing character
- *
- * Return: void
+ * @a: array of 8 strings
  */
-
 void print_chessboard(char (*a)[8])
 {
-	int i, j;
+	int row, col;
 
-	for (i = 0; a[i][7]; i++)
+	for (row = 0; row < 8; row++)
 	{
-		for (j = 0; j < 8; j++)
-			_putchar(a[i][j]);
+		for (col = 0; col < 8; col++)
+		{
+			_putchar(a[row][col]);
+		}
 		_putchar('\n');
 	}
 }
