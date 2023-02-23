@@ -1,36 +1,31 @@
 #include "main.h"
 
 /**
- * _strspn- calculates no of contiguous bytes in the initial segment of 's'
- * which contain only characters from 'accept'
+ * _strspn - gets the length of a prefix substring
+ * @s: string to search
+ * @accept: string containing characters to match
  *
- * @s: pointer to a string
- * @accept: source memory area
- *
- * Return: no of bytes
+ * Description: Checks the initial segment of s which consists entirely of
+ * bytes in accept
+ * Return: no of matching bytes
  */
-
 unsigned int _strspn(char *s, char *accept)
 {
-	int span = 0, i, j, found;
+	unsigned int idx, len = 0;
 
-	for (i = 0; s[i] != '\0'; i++)
+	while (*s)
 	{
-		for (j = 0; accept[j] != '\0'; j++)
+		for (idx = 0; accept[idx]; idx++)
 		{
-			if (s[i] == accept[j])
+			if (*s == accept[idx])
 			{
-				span++;
-				found = 1;
+				len++;
 				break;
 			}
-			else
-				found = 0;
 		}
-		if (found)
-			continue;
-		else
+		if (!accept[idx])
 			break;
+		s++;
 	}
-	return (span);
+	return (len);
 }
