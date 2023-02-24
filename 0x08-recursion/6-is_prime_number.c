@@ -1,46 +1,31 @@
 #include "main.h"
-
-int elim_composite(int, int);
+int is_prime(int n, int i);
 
 /**
  * is_prime_number - checks if a number is prime
- * @n: number to check
+ * @n: number
  *
- * Return: 1 if prime, otherwise 0
+ * Return: 1 if n is prime, otherwise 0
  */
-
 int is_prime_number(int n)
 {
-	if (n < 2 || (!(n % 2) && n != 2))
-	{
-		return (0);
-	}
-	else if (n == 3)
-		return (1);
-
-	return (elim_composite(n, 3));
+	return (is_prime(n, 2));
 }
 
 /**
- * elim_composite - eliminates composite numbers
- * @x: integer to test against
- * @y: integer to test
+ * is_prime - helper function for is_prime_number
+ * @n: number
+ * @i: iterator
  *
- * Return: 1 if only divisible by self, otherwise 0
+ * Return: 1 if n is prime, otherwise 0
  */
-
-int elim_composite(int x, int y)
+int is_prime(int n, int i)
 {
-	if (x % y == 0)
-	{
+	if (n <= 1)
 		return (0);
-	}
-	else if (x / 2 > y)
-	{
-		return (elim_composite(y + 2, x));
-	}
-	else
-	{
+	if (n == i)
 		return (1);
-	}
+	if (n % i == 0)
+		return (0);
+	return (is_prime(n, i + 1));
 }
