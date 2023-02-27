@@ -1,54 +1,48 @@
 #include "main.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 /**
- * argstostr - concatenates all the arguments of a program with newline
- * between arguments
- *
+ * argstostr - concatenates all the arguments of a program
  * @ac: argument count
- * @av: array of pointers to program arguments
+ * @av: arguments
  *
- * Return: pointer to concatenated string
+ * Return: pointer to the concatenated string or NULL if it fails
  */
-
 char *argstostr(int ac, char **av)
 {
-	char *cat_str;
-	int cnt = 0, i, j, k;
+	char *arg_str, *tmp_arg;
+	int i = 0, idx = 0, len = 0;
 
-	if (!ac)
+	if (ac == 0 || av == NULL)
 		return (NULL);
-
-	for (i = 0; i < ac; i++)
+	while (i < ac)
 	{
-		if (!av[i])
-			return (NULL);
-		for (j = 0; av[i][j] != '\0'; j++)
-			cnt++;
-		cnt++;
-	}
-
-	cat_str = malloc((cnt + 1) * sizeof(**av));
-
-	if (!cat_str)
-	{
-		free(cat_str);
-		return (NULL);
-	}
-
-	for (i = j = k = 0; k < cnt; j++, k++)
-	{
-		if (av[i][j] == '\0')
+		tmp_arg = av[i];
+		while (*tmp_arg)
 		{
-			cat_str[k] = '\n';
-			i++;
-			k++;
-			j = 0;
+			len++;
+			tmp_arg++;
 		}
-		if (k < cnt - 1)
-			cat_str[k] = av[i][j];
+		i++;
 	}
-	cat_str[k] = '\0';
+	arg_str = malloc(sizeof(char) * (len + ac + 1));
+	if (!arg_str)
+		return (NULL);
 
-	return (cat_str);
+	i = 0;
+	while (i < ac)
+	{
+		tmp_arg = av[i];
+		while (*tmp_arg)
+		{
+			arg_str[idx++] = *tmp_arg;
+			tmp_arg++;
+		}
+		arg_str[idx++] = '\n';
+		i++;
+	}
+	arg_str[idx] = '\0';
+
+	return (arg_str);
 }
