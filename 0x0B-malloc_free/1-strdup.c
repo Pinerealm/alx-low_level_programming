@@ -1,46 +1,29 @@
 #include "main.h"
 #include <stdlib.h>
 
-int _strlen(char *s);
-
 /**
- * _strdup - copies a string to a newly allocated space in memory
- * @str: pointer to a string
+ * _strdup - duplicates a string
+ * @str: string to duplicate
  *
- * Return: pointer to newly created array
+ * Return: pointer to the duplicated string,
+ * or NULL (if it fails or str is NULL)
  */
-
 char *_strdup(char *str)
 {
-	char *ar;
-	int i, len_s;
+	char *new_str;
+	int idx, len = 0;
 
 	if (!str)
-		return ('\0');
-	len_s = _strlen(str);
-	ar = malloc(sizeof(char) * len_s + 1);
-	if (ar == NULL)
-		return ('\0');
-	for (i = 0; i < len_s; i++)
-	{
-		ar[i] = str[i];
-	}
-	ar[i] = '\0';
-	return (ar);
-}
-/**
- * _strlen - finds the length of a string
- * @s: pointer to a string
- *
- * Return: string length
- */
+		return (NULL);
+	while (str[len])
+		len++;
+	new_str = malloc((len + 1) * sizeof(char));
+	if (!new_str)
+		return (NULL);
 
-int _strlen(char *s)
-{
-	int cnt = 0;
+	for (idx = 0; idx < len; idx++)
+		new_str[idx] = str[idx];
+	new_str[idx] = '\0';
 
-	while (s[cnt] != '\0')
-		cnt++;
-
-	return (cnt);
+	return (new_str);
 }
