@@ -2,44 +2,38 @@
 #include <stdlib.h>
 
 /**
- * alloc_grid - Initialize the elements of a two-dimensional array of
- * integers with specified width and height to 0
+ * alloc_grid - creates a 2 dimensional array of integers with each element
+ * initialized to 0
+ * @width: width of the array
+ * @height: height of the array
  *
- * @width: no of columns in the array
- * @height: no of rows in the array
- *
- * Return: pointer to the 2-dimensional array
+ * Return: pointer to the array or NULL (on failure or if width or height <= 0)
  */
-
 int **alloc_grid(int width, int height)
 {
-	int **row_ptrs;
-	int i, j, k;
+	int **array, *row, i = 0, j;
 
-	if (width < 1 || height < 1)
-		return ('\0');
+	if (width <= 0 || height <= 0)
+		return (NULL);
+	array = malloc(sizeof(int *) * height);
+	if (!array)
+		return (NULL);
 
-	row_ptrs = malloc(height * sizeof(int *));
-	if (!row_ptrs)
+	while (i < height)
 	{
-		free(row_ptrs);
-		return ('\0');
-	}
-	for (i = 0; i < height; i++)
-	{
-		row_ptrs[i] = malloc(width * sizeof(int));
-		if (!row_ptrs[i])
+		row = malloc(sizeof(int) * width);
+		if (!row)
 		{
-			for (i--; i >= 0; i--)
-				free(row_ptrs[i]);
-			free(row_ptrs);
-			return ('\0');
+			while (--i >= 0)
+				free(array[i]);
+			free(array);
+			return (NULL);
 		}
+		array[i] = row;
+		for (j = 0; j < width; j++)
+			row[j] = 0;
+		i++;
 	}
-	for (j = 0; j < height; j++)
-	{
-		for (k = 0; k < width; k++)
-			row_ptrs[j][k] = 0;
-	}
-	return (row_ptrs);
+
+	return (array);
 }
