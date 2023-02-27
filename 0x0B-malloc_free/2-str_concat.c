@@ -1,56 +1,37 @@
 #include "main.h"
 #include <stdlib.h>
-
-int _strlen(char *s);
-
+#include <stdio.h>
 /**
- * str_concat - concatenates two strings in a newly allocated space
- * in memory
+ * str_concat - concatenates two strings
+ * @s1: first string
+ * @s2: second string
  *
- * @s1: pointer to the first string
- * @s2: pointer to the second string
- *
- * Return: pointer to the newly created array
+ * Return: pointer to the concatenated string,
  */
-
 char *str_concat(char *s1, char *s2)
 {
-	char *ar;
-	int i, len_s1, len_t, j = 0;
+	char *new_str;
+	int idx = 0, idx2 = 0, len = 0;
 
-	s1 = (!s1) ? "" : s1;
-	s2 = (!s2) ? "" : s2;
+	if (!s1)
+		s1 = "";
+	if (!s2)
+		s2 = "";
+	while (s1[idx++])
+		len++;
+	while (s2[idx2++])
+		len++;
 
-	len_s1 = _strlen(s1);
-	len_t = len_s1 + _strlen(s2);
-	ar = malloc(sizeof(char) * len_t + 1);
-	if (ar == NULL)
-		return ('\0');
-	for (i = 0; i < len_s1; i++)
-	{
-		ar[i] = s1[i];
-	}
-	for ( ; i < len_t; i++)
-	{
-		ar[i] = s2[j++];
-	}
-	ar[i] = '\0';
-	return (ar);
-}
+	new_str = malloc((len + 1) * sizeof(char));
+	if (new_str == NULL)
+		return (NULL);
+	
+	idx = 0;
+	while (*s1)
+		new_str[idx++] = *s1++;
+	while (*s2)
+		new_str[idx++] = *s2++;
+	new_str[idx] = '\0';
 
-/**
- * _strlen - finds the length of a string
- * @s: pointer to a string
- *
- * Return: string length
- */
-
-int _strlen(char *s)
-{
-	int cnt = 0;
-
-	while (s[cnt] != '\0')
-		cnt++;
-
-	return (cnt);
+	return (new_str);
 }
