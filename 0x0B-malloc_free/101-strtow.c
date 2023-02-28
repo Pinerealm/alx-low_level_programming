@@ -47,6 +47,11 @@ char **strtow(char *str)
 			words_array[idx++] = word;
 		}
 	}
+	if (idx == 0)
+	{
+		free(words_array);
+		return (NULL);
+	}
 	words_array[idx] = NULL;
 
 	return (words_array);
