@@ -1,6 +1,5 @@
 #include "main.h"
 #include <stdlib.h>
-#include <stdio.h>
 int get_word_count(char *str);
 char *_strcpy(char *dest, char *src);
 
