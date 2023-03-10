@@ -1,58 +1,44 @@
 #include "main.h"
 #include <stdlib.h>
 
-int _strlen(char *s);
-
 /**
  * string_nconcat - concatenates two strings
- *
  * @s1: pointer to first string
  * @s2: pointer to second string
  * @n: no of bytes to concatenate to s1 from s2
  *
- * Return: pointer to concatenated string
+ * Return: pointer to the concatenated string
  */
-
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	char *str_n;
-	unsigned int i, j, len_s1, len_s2, len_tot;
+	char *new_str;
+	unsigned int idx = 0, len_s1 = 0, len_s2 = 0;
 
 	s1 = (!s1) ? "" : s1;
 	s2 = (!s2) ? "" : s2;
-	len_s1 = _strlen(s1);
-	len_s2 = _strlen(s2);
 
+	while (s2[len_s2])
+		len_s2++;
+	while (s1[len_s1])
+		len_s1++;
 	if (n >= len_s2)
-		len_tot = len_s1 + len_s2;
-	else
-		len_tot = len_s1 + n;
+		n = len_s2;
 
-	str_n = malloc(sizeof(*str_n) * (len_tot + 1));
-	if (!str_n)
+	new_str = malloc(sizeof(char) * (len_s1 + n + 1));
+	if (!new_str)
 		return (NULL);
-	for (i = 0; i < len_s1; i++)
-		str_n[i] = s1[i];
-	for (j = 0; i < len_tot; i++)
-		str_n[i] = s2[j++];
 
-	str_n[i] = '\0';
-	return (str_n);
-}
+	while (idx < len_s1)
+	{
+		new_str[idx] = s1[idx];
+		idx++;
+	}
+	while (idx < len_s1 + n)
+	{
+		new_str[idx] = s2[idx - len_s1];
+		idx++;
+	}
+	new_str[idx] = '\0';
 
-/**
-* _strlen - get string length
-* @s: pointer to string
-*
-* Return: dest
-*/
-
-int _strlen(char *s)
-{
-	int cnt = 0;
-
-	while (*(s + cnt) != '\0')
-		cnt++;
-
-	return (cnt);
+	return (new_str);
 }
