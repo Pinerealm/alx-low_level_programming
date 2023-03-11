@@ -11,6 +11,8 @@ char *add(char *n1, char *n2, char *r);
 int string_len(char *s);
 char *_strcpy(char *dest, char *src);
 
+int _atoi(char *s);
+
 /**
  * main - Entry point
  * @argc: argument count
@@ -24,17 +26,26 @@ int main(int argc, char **argv)
 {
 	int idx, idx2, buff_idx, carry, tmp_idx, res, len2;
 	int total_buff, place, j;
-	char *res_buff, *tmp_buff, *interim_buff;
+	char *res_buff, *tmp_buff, *interim_buff, *num1, *num2;
 
 	idx = idx2 = buff_idx = res = place = j = 0;
 	if (argc != 3)
 		print_error();
+	num1 = argv[1];
+	num2 = argv[2];
 	/* Exit with code 98 if arguments are not valid */
-	check_args(argv[1], argv[2]);
+	/* Changes strings with all zeros to 0 */
+	check_args(num1, num2);
+	if (_atoi(num1) == 0 || _atoi(num2) == 0)
+	{
+		_putchar('0');
+		_putchar('\n');
+		return (0);
+	}
 
 	/* find the length of the first number */
-	idx = string_len(argv[1]);
-	len2 = idx2 = string_len(argv[2]);
+	idx = string_len(num1);
+	len2 = idx2 = string_len(num2);
 	total_buff = idx + idx2 + 1;
 
 	/* allocate memory for the result */
@@ -61,7 +72,7 @@ int main(int argc, char **argv)
 
 		while (idx2 > 0)
 		{
-			res = (argv[1][idx] - '0') * (argv[2][--idx2] - '0');
+			res = (num1[idx] - '0') * (num2[--idx2] - '0');
 			res += carry;
 			tmp_buff[tmp_idx++] = res % 10 + '0';
 			carry = res / 10;
@@ -123,14 +134,17 @@ int _isdigit(char c)
  * @str1: first argument
  * @str2: second argument
  *
+ * Description: changes strings with all zeros to 0
  * Return: 0 if valid, otherwise exit with code 98
  */
 int check_args(char *str1, char *str2)
 {
-	unsigned int idx = 0;
+	unsigned int idx = 0, zeros = 0;
 
 	while (str1[idx])
 	{
+		if (str1[idx] == '0')
+			zeros++;
 		if (!_isdigit(str1[idx]))
 		{
 			print_error();
@@ -138,15 +152,28 @@ int check_args(char *str1, char *str2)
 		}
 		idx++;
 	}
-	idx = 0;
+	if (zeros == idx)
+	{
+		str1[0] = '0';
+		str1[1] = '\0';
+	}
+
+	idx = zeros = 0;
 	while (str2[idx])
 	{
+		if (str2[idx] == '0')
+			zeros++;
 		if (!_isdigit(str2[idx]))
 		{
 			print_error();
 			exit(98);
 		}
 		idx++;
+	}
+	if (zeros == idx)
+	{
+		str2[0] = '0';
+		str2[1] = '\0';
 	}
 
 	return (0);
@@ -252,4 +279,23 @@ char *_strcpy(char *dest, char *src)
 	dest[idx] = '\0';
 
 	return (dest);
+}
+
+/**
+ * _atoi - convert a string to an integer
+ * @s: string to convert
+ *
+ * Return: integer value of the string
+ */
+int _atoi(char *s)
+{
+	int res, idx, tmp;
+
+	res = idx = 0;
+	while (s[idx] != '\0')
+	{
+		tmp = s[idx++] - '0';
+		res = res * 10 + tmp;
+	}
+	return (res);
 }
