@@ -1,44 +1,63 @@
 #include "main.h"
 #include <stdlib.h>
+void *_memcpy(void *dest, void *src, unsigned int n);
 
 /**
- * _realloc - reallocates a memory block using malloc and free.
+ * _realloc - reallocates a memory block using malloc and free
+ * @ptr: pointer to the previously allocated memory
+ * @old_size: the size of the previously allocated memory
+ * @new_size: the size of the new memory block
  *
- * @ptr: address of the old pointer
- * @old_size: size of the previous array
- * @new_size: size of the new array
- *
- * Return: pointer to the reallocated block
+ * Return: pointer to the new memory block
  */
-
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	char *new_ptr, *tmp_ptr;
-	int i, less_size = (new_size < old_size) ? new_size : old_size;
+	void *new_ptr;
 
+	if (new_size == old_size)
+		return (ptr);
 	if (ptr == NULL)
 	{
-		new_ptr = malloc(new_size * sizeof(*new_ptr));
-		return ((void *)new_ptr);
+		new_ptr = malloc(new_size);
+		if (new_ptr == NULL)
+			return (NULL);
+		return (new_ptr);
 	}
-	else if (old_size == new_size)
-	{
-		return (ptr);
-	}
-	else if (new_size == 0)
+	if (new_size == 0 && ptr != NULL)
 	{
 		free(ptr);
 		return (NULL);
 	}
-	else
-		tmp_ptr = ptr;
 
-	new_ptr = malloc(new_size * sizeof(*new_ptr));
-	if (!new_ptr)
+	new_ptr = malloc(new_size);
+	if (new_ptr == NULL)
 		return (NULL);
-	for (i = 0; i < less_size; i++)
-		new_ptr[i] = tmp_ptr[i];
+
+	if (new_size > old_size)
+		_memcpy(new_ptr, ptr, old_size);
+	else
+		_memcpy(new_ptr, ptr, new_size);
 	free(ptr);
 
-	return ((void *)new_ptr);
+	return (new_ptr);
+}
+
+/**
+ * _memcpy - copies n bytes from memory area src to memory area dest
+ * @dest: destination memory area
+ * @src: source memory area
+ * @n: no of bytes to copy
+ *
+ * Return: a void pointer to dest
+*/
+void *_memcpy(void *dest, void *src, unsigned int n)
+{
+	unsigned int idx = 0;
+
+	while (idx < n)
+	{
+		((char *)dest)[idx] = ((char *)src)[idx];
+		idx++;
+	}
+	return (dest);
 }
