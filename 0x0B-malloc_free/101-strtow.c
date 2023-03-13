@@ -68,15 +68,9 @@ int get_word_count(char *str)
 
 	while (*str)
 	{
-		if (*str == ' ')
-			str++;
-		else
-		{
-			while (*str != ' ' && *str != '\0')
-				str++;
+		if (*str != ' ' && *(str + 1) == ' ')
 			count++;
-			str++;
-		}
+		str++;
 	}
 	return (count);
 }
