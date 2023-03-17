@@ -6,10 +6,10 @@
  *
  * Return: the sum of all the values in the list
  */
-int sum_dlistint(const dlistint_t *head)
+int sum_dlistint(dlistint_t *head)
 {
 	int sum = 0;
-	const dlistint_t *current = head;
+	dlistint_t *current = head;
 
 	while (current)
 	{
