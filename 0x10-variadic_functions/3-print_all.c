@@ -2,8 +2,8 @@
 #include <stdarg.h>
 
 /**
- * print_all - prints anything passed as argument after format specification
- *
+ * print_all - prints anything passed as argument according to
+ * the format specification
  * @format: list of the types of arguments passed
  *
  * Return: void
@@ -11,43 +11,41 @@
 void print_all(const char * const format, ...)
 {
 	va_list ap;
-	unsigned int c = 0, i = 0, j;
-	char *str;
-	const char types[] = "cifs";
+	int idx = 0, j;
+	char *chars = "cifs", *str;
 
 	va_start(ap, format);
-	while (format && format[i])
+	while (format[idx])
 	{
 		j = 0;
-		while (types[j])
+		while (chars[j])
 		{
-			if (format[i] == types[j] && c)
+			if (format[idx] == chars[j++] && idx != 0)
 			{
 				printf(", ");
 				break;
-			} j++;
-		}
-		switch (format[i])
-		{
-		case 'c':
-			printf("%c", va_arg(ap, int)), c = 1;
-			break;
-		case 'i':
-			printf("%d", va_arg(ap, int)), c = 1;
-			break;
-		case 'f':
-			printf("%f", va_arg(ap, double)), c = 1;
-			break;
-		case 's':
-			str = va_arg(ap, char *), c = 1;
-			if (!str)
-			{
-				printf("(nil)");
-				break;
 			}
-			printf("%s", str);
-			break;
-		} i++;
+		}
+		switch (format[idx])
+		{
+			case 'c':
+				printf("%c", va_arg(ap, int));
+				break;
+			case 'i':
+				printf("%d", va_arg(ap, int));
+				break;
+			case 'f':
+				printf("%f", va_arg(ap, double));
+				break;
+			case 's':
+				str = va_arg(ap, char *);
+				if (str == NULL)
+					str = "(nil)";
+				printf("%s", str);
+				break;
+		}
+		idx++;
 	}
-	printf("\n"), va_end(ap);
+	printf("\n");
+	va_end(ap);
 }
