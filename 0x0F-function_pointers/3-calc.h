@@ -1,8 +1,11 @@
 #ifndef CALC_H
 #define CALC_H
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 /**
- * struct op - define calculation characteristics
+ * struct op - Struct op
  *
  * @op: the operator
  * @f: function associated with the operator
@@ -21,4 +24,4 @@ int op_mod(int a, int b);
 
 int (*get_op_func(char *s))(int, int);
 
-#endif
+#endif /* CALC_H */

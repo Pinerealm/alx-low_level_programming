@@ -1,9 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "3-calc.h"
 
 /**
  * op_add - adds two integers
- *
  * @a: first integer
  * @b: second integer
  *
@@ -17,7 +15,6 @@ int op_add(int a, int b)
 
 /**
  * op_sub - subtracts the second from the first integer
- *
  * @a: first integer
  * @b: second integer
  *
@@ -31,7 +28,6 @@ int op_sub(int a, int b)
 
 /**
  * op_mul - multiplies two integers
- *
  * @a: first integer
  * @b: second integer
  *
@@ -45,7 +41,6 @@ int op_mul(int a, int b)
 
 /**
  * op_div - Divides the first by the second integer
- *
  * @a: first integer
  * @b: second integer
  *
@@ -63,8 +58,7 @@ int op_div(int a, int b)
 }
 
 /**
- * op_mod - performs a remainder division on two integers
- *
+ * op_mod - performs a modulo (remainder) operation on two integers
  * @a: first integer
  * @b: second integer
  *
