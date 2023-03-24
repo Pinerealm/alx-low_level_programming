@@ -1,5 +1,4 @@
 #include "lists.h"
-
 int _strlen(const char *s);
 
 /**
@@ -11,8 +10,7 @@ int _strlen(const char *s);
  */
 list_t *add_node_end(list_t **head, const char *str)
 {
-	list_t *new;
-	list_t *temp;
+	list_t *new, *temp;
 
 	new = malloc(sizeof(list_t));
 	if (!new)
@@ -26,7 +24,7 @@ list_t *add_node_end(list_t **head, const char *str)
 		return (new);
 	}
 	temp = *head;
-	while (temp->next != NULL)
+	while (temp->next)
 		temp = temp->next;
 	temp->next = new;
 
