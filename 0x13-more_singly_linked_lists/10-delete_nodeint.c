@@ -2,38 +2,39 @@
 
 /**
  * delete_nodeint_at_index - deletes the node at a given index
- *
- * @head: address of the pointer to the list head
+ * @head: double pointer to the head of the list
  * @idx: index of the node to delete
  *
  * Return: 1 if it succeeded, -1 if it failed
  */
 int delete_nodeint_at_index(listint_t **head, unsigned int idx)
 {
-	listint_t *temp;
-	listint_t *prev;
-	unsigned int i;
+	listint_t *temp, *prev;
+	unsigned int i = 0;
 
 	if (!head || !*head)
 		return (-1);
 	if (idx == 0)
 	{
 		temp = *head;
-		*head = (*head)->next;
+		*head = temp->next;
 		free(temp);
 		return (1);
 	}
 
 	temp = *head;
-	for (i = 0; temp && i < idx; i++)
+	while (temp)
 	{
+		if (i == idx)
+		{
+			prev->next = temp->next;
+			free(temp);
+			return (1);
+		}
 		prev = temp;
 		temp = temp->next;
+		i++;
 	}
-	if (!temp)
-		return (-1);
-	prev->next = temp->next;
-	free(temp);
 
-	return (1);
+	return (-1);
 }
