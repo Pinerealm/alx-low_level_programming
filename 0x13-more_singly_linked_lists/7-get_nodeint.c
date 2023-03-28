@@ -2,8 +2,7 @@
 
 /**
  * get_nodeint_at_index - gets the node at a given index
- *
- * @head: head pointer of the list
+ * @head: double pointer to the list head
  * @index: index of the node to get
  *
  * Return: address of the node at the given index, or NULL if not existing
@@ -14,7 +13,7 @@ listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 
 	if (head == NULL)
 		return (NULL);
-	for (i = 0; head != NULL; i++)
+	for (i = 0; head; i++)
 	{
 		if (i == index)
 			return (head);
