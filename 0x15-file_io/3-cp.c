@@ -1,68 +1,64 @@
-#include "main.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-void print_invalid_fd(int file_from, int file_to, char **av);
-void print_invalid_close(int res, int fd);
+void handle_file_error(int file_from, int file_to, char **av);
+void handle_close_error(int file_from, int file_to);
 
 /**
- * main - copies the contents of a file to another file
- *
- * @ac: number of command line arguments
- * @av: array of command line arguments
+ * main - entry point
+ * @ac: argument count
+ * @av: argument vector
  *
  * Return: 0 on success, 1 on failure
  */
 int main(int ac, char **av)
 {
-	int fd, fd2, bytes_read, bytes_written, close_res;
-	char *buffer;
+	int file_from, file_to;
+	ssize_t nread;
+	char buf[1024];
 
 	if (ac != 3)
 	{
-		dprintf(STDERR_FILENO, "%s\n", "Usage: cp file_from file_to");
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
+	file_from = open(av[1], O_RDONLY);
+	file_to = open(av[2], O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0664);
+	handle_file_error(file_from, file_to, av);
 
-	fd = open(av[1], O_RDONLY);
-	fd2 = open(av[2], O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0664);
-	/* if open fails */
-	print_invalid_fd(fd, fd2, av);
-
-	buffer = malloc(sizeof(char) * BUFFER_SIZE);
-	if (!buffer)
-		exit(1);
-	while ((bytes_read = read(fd, buffer, BUFFER_SIZE)) > 0)
+	while ((nread = read(file_from, buf, 1024)) > 0)
 	{
-		bytes_written = write(fd2, buffer, bytes_read);
-		/* if write fails */
-		print_invalid_fd(0, bytes_written, av);
+		if (write(file_to, buf, nread) != nread)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
+			exit(99);
+		}
 	}
-	/* if read fails */
-	print_invalid_fd(bytes_read, 0, av);
-	free(buffer);
-
-	close_res = close(fd);
-	print_invalid_close(close_res, fd);
-	close_res = close(fd2);
-	print_invalid_close(close_res, fd2);
+	if (nread == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
+		exit(98);
+	}
+	handle_close_error(file_from, file_to);
 
 	return (0);
 }
 
 /**
- * print_invalid_fd - prints error message if fd is invalid
- *
- * @file_from: file descriptor
- * @file_to: file descriptor
- * @av: array of arguments
- *
- * Return: void
+ * handle_file_error - handles file read/write errors
+ * @file_from: file to read from
+ * @file_to: file to write to
+ * @av: argument vector
  */
-void print_invalid_fd(int file_from, int file_to, char **av)
+void handle_file_error(int file_from, int file_to, char **av)
 {
 	if (file_from == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n",
-					av[1]);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
 		exit(98);
 	}
 	if (file_to == -1)
@@ -73,18 +69,20 @@ void print_invalid_fd(int file_from, int file_to, char **av)
 }
 
 /**
- * print_invalid_close - prints error message if close fails
- *
- * @res: return value of  calling close()
- * @fd: file descriptor
- *
- * Return: void
+ * handle_close_error - handles file close errors
+ * @file_from: file to read from
+ * @file_to: file to write to
  */
-void print_invalid_close(int res, int fd)
+void handle_close_error(int file_from, int file_to)
 {
-	if (res == -1)
+	if (close(file_from) == -1)
 	{
-		dprintf(2, "Error: Can't close fd %d\n", fd);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
+		exit(100);
+	}
+	if (close(file_to) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_to);
 		exit(100);
 	}
 }
