@@ -13,6 +13,7 @@ void handle_close_error(int file_from, int file_to);
  * @ac: argument count
  * @av: argument vector
  *
+ * Description: copies the content of a file to another file
  * Return: 0 on success, 1 on failure
  */
 int main(int ac, char **av)
