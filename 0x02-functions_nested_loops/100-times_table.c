@@ -1,6 +1,5 @@
 #include "main.h"
 
-void print_product(int a, int b);
 /**
  * print_times_table - prints the n times table, starting with 0
  * @n: starting number
@@ -10,64 +9,39 @@ void print_product(int a, int b);
  */
 void print_times_table(int n)
 {
-	int i = 0, j;
+	int i, j, product;
 
-	if (n > 15 || n < 0)
+	if (n < 0 || n > 15)
 		return;
 
-	while (i <= n)
+	for (i = 0; i <= n; i++)
 	{
-		j = 0;
-		while (j <= n)
+		_putchar('0');
+		for (j = 1; j <= n; j++)
 		{
-			print_product(i, j);
-			if (j == n)
-				break;
-			if (i * (j + 1) < 10)
+			product = i * j;
+			_putchar(',');
+			_putchar(' ');
+
+			if (product <= 9)
 			{
-				_putchar(',');
 				_putchar(' ');
 				_putchar(' ');
-				_putchar(' ');
+				_putchar(product + '0');
 			}
-			else if (i * (j + 1) < 100)
+			else if (product <= 99)
 			{
-				_putchar(',');
 				_putchar(' ');
-				_putchar(' ');
+				_putchar((product / 10) + '0');
+				_putchar((product % 10) + '0');
 			}
 			else
 			{
-				_putchar(',');
-				_putchar(' ');
+				_putchar((product / 100) + '0');
+				_putchar(((product / 10) % 10) + '0');
+				_putchar((product % 10) + '0');
 			}
-			j++;
 		}
-		i++;
 		_putchar('\n');
-	}
-}
-
-/**
- * print_product - print the products of the multiplication table
- * @a: The first integer
- * @b: The second integer
- */
-void print_product(int a, int b)
-{
-	int product = a * b;
-
-	if (product < 10)
-		_putchar(product + '0');
-	else if (product < 100)
-	{
-		_putchar(product / 10 + '0');
-		_putchar(product % 10 + '0');
-	}
-	else
-	{
-		_putchar(product / 100 + '0');
-		_putchar((product / 10) % 10 + '0');
-		_putchar(product % 10 + '0');
 	}
 }
