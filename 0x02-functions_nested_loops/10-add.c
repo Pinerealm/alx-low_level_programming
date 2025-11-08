@@ -1,5 +1,3 @@
-#include "main.h"
-
 /**
  * add - function that adds two integers
  *
