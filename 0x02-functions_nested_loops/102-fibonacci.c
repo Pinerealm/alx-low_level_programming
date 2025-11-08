@@ -13,15 +13,14 @@ int main(void)
 	long sum, n;
 
 	printf("%lu, ", i);
-	printf("%lu, ", j);
+	printf("%lu", j);
 
 	for (n = 0; n < 48; n++)
 	{
 		sum = i + j;
-		if (n == 47)
-			printf("%lu", sum);
-		else
-			printf("%lu, ", sum);
+		printf(", ");
+		printf("%lu", sum);
+
 		i = j;
 		j = sum;
 	}
