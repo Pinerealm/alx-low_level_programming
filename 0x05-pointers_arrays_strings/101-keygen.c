@@ -11,19 +11,18 @@
  */
 int main(void)
 {
-	int sum, n;
+	int sum = 2772, n;
 
 	srand(time(NULL));
-	sum = 2772;
-	while (sum > 125)
+	while (sum > 126)
 	{
-		n = rand() % 78 + '0';
-		if (isprint(n))
-		{
-			printf("%c", n);
-			sum -= n;
-		}
+		n = rand() % 94 + 33;
+		printf("%c", n);
+		sum -= n;
 	}
+
 	printf("%c", sum);
+
 	return (0);
 }
+
