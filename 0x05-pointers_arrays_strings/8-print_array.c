@@ -1,4 +1,3 @@
-#include "main.h"
 #include <stdio.h>
 
 /**
@@ -12,9 +11,9 @@ void print_array(int *a, int n)
 
 	while (idx < n)
 	{
-		printf("%d", a[idx]);
-		if (idx < n - 1)
+		if (idx > 0)
 			printf(", ");
+		printf("%d", a[idx]);
 		idx++;
 	}
 	printf("\n");
