@@ -17,7 +17,7 @@ int main(void)
 
 	printf("%lu", fib1_low);
 
-	for (count = 2; count <= 98; count++)
+	for (count = 2; count < 98; count++)
 	{
 		sum_low = fib1_low + fib2_low;
 		carry = sum_low / divisor;
