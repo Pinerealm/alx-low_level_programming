@@ -15,7 +15,7 @@ int main(void)
 	unsigned long divisor = 1000000000; /* 10^9 */
 	int count;
 
-	printf("%lu", fib1_low);
+	printf("%lu, %lu", fib1_low, fib2_low);
 
 	for (count = 2; count < 98; count++)
 	{
