@@ -1,5 +1,3 @@
-#include "main.h"
-
 /**
  * reverse_array - reverses the contents of an array of integers
  * @a: array to reverse
@@ -7,13 +5,14 @@
  */
 void reverse_array(int *a, int n)
 {
-	int idx = 0, tmp;
+	int left = 0, right = n - 1, tmp;
 
-	while (idx < n / 2)
+	while (left < right)
 	{
-		tmp = a[idx];
-		a[idx] = a[n - idx - 1];
-		a[n - idx - 1] = tmp;
-		idx++;
+		tmp = a[left];
+		a[left] = a[right];
+		a[right] = tmp;
+		left++;
+		right--;
 	}
 }
