@@ -1,5 +1,3 @@
-#include "main.h"
-
 /**
  * rot13 - encodes a string using rot13
  * @s: string to modify
@@ -8,24 +6,18 @@
  */
 char *rot13(char *s)
 {
-	int idx = 0, sdx;
-	char alpha[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	char rot13[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+	int idx = 0;
 
-	while (s[idx] != '\0')
+	while (s[idx])
 	{
-		sdx = 0;
-		while (alpha[sdx] != '\0')
-		{
-			if (s[idx] == alpha[sdx])
-			{
-				s[idx] = rot13[sdx];
-				break;
-			}
-			sdx++;
-		}
+		if ((s[idx] >= 'A' && s[idx] <= 'M')
+			|| (s[idx] >= 'a' && s[idx] <= 'm'))
+			s[idx] += 13;
+		else if ((s[idx] >= 'N' && s[idx] <= 'Z')
+			|| (s[idx] >= 'n' && s[idx] <= 'z'))
+			s[idx] -= 13;
+
 		idx++;
 	}
-
 	return (s);
 }
