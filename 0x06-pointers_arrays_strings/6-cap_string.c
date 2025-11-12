@@ -1,5 +1,3 @@
-#include "main.h"
-
 /**
  * cap_string - capitalizes all words of a string
  * @s: string to modify
@@ -9,26 +7,29 @@
 char *cap_string(char *s)
 {
 	int idx = 0, sep_idx;
-	char word_seps[] = " \t\n,;.!?\"(){}";
+	int new_word = 1;
+	char separators[] = " \t\n,;.!?\"(){}";
 
-	if (s[0] >= 'a' && s[0] <= 'z')
-		s[idx++] -= 32;
-	while (s[idx] != '\0')
+	while (s[idx])
 	{
-		sep_idx = 0;
-		while (word_seps[sep_idx] != '\0')
+		if (new_word && s[idx] >= 'a' && s[idx] <= 'z')
 		{
-			if (s[idx] == word_seps[sep_idx] && s[idx + 1] >= 'a'
-				&& s[idx + 1] <= 'z')
+			s[idx] -= 32;
+			new_word = 0;
+		}
+		else
+		{
+			new_word = 0;
+			for (sep_idx = 0; separators[sep_idx]; sep_idx++)
 			{
-				s[idx + 1] -= 32;
-				idx++;
-				break;
+				if (s[idx] == separators[sep_idx])
+				{
+					new_word = 1;
+					break;
+				}
 			}
-			sep_idx++;
 		}
 		idx++;
 	}
-
 	return (s);
 }
