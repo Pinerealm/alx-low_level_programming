@@ -6,28 +6,34 @@
  */
 void print_number(int n)
 {
-	unsigned int n_copy, dig_len = 0, divisor = 1;
+	unsigned int num, divisor = 1, temp;
 
 	if (n < 0)
 	{
 		_putchar('-');
-		n = -n;
+		num = -((unsigned int)n);
 	}
-	n_copy = n;
-	while (n_copy > 0)
+	else
 	{
-		n_copy /= 10;
-		dig_len++;
+		num = n;
 	}
-	while (dig_len > 1)
+
+	if (num == 0)
+	{
+		_putchar('0');
+		return;
+	}
+
+	temp = num;
+	while (temp / 10 > 0)
 	{
 		divisor *= 10;
-		dig_len--;
+		temp /= 10;
 	}
+
 	while (divisor > 0)
 	{
-		_putchar((n / divisor) + '0');
-		n %= divisor;
+		_putchar((num / divisor) % 10 + '0');
 		divisor /= 10;
 	}
 }
