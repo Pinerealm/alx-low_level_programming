@@ -13,43 +13,25 @@ int string_len(char *s);
  */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int idx1 = 0, idx2 = 0, res_idx = 0, tmp, carry = 0;
+	int len1 = string_len(n1);
+	int len2 = string_len(n2);
+	int carry = 0, sum, i = 0;
 
-	/* find the length of n1 and n2 */
-	idx1 = string_len(n1);
-	idx2 = string_len(n2);
-	/* check if the result can fit in r */
-	if ((idx1 + 1) >= size_r || (idx2 + 1) >= size_r)
+	while (len1 > 0 || len2 > 0 || carry)
 	{
-		return (0);
+		int digit1 = (len1 > 0) ? n1[--len1] - '0' : 0;
+		int digit2 = (len2 > 0) ? n2[--len2] - '0' : 0;
+
+		sum = digit1 + digit2 + carry;
+		carry = sum / 10;
+
+		if (i >= size_r - 1)
+			return (0);
+
+		r[i++] = (sum % 10) + '0';
 	}
-	/* add the numbers */
-	idx1--;
-	idx2--;
-	while (idx1 >= 0 || idx2 >= 0)
-	{
-		tmp = 0;
-		if (idx1 >= 0)
-		{
-			tmp += n1[idx1] - '0';
-			idx1--;
-		}
-		if (idx2 >= 0)
-		{
-			tmp += n2[idx2] - '0';
-			idx2--;
-		}
-		tmp += carry;
-		carry = tmp / 10;
-		r[res_idx] = (tmp % 10) + '0';
-		res_idx++;
-	}
-	if (carry > 0)
-	{
-		r[res_idx] = carry + '0';
-		res_idx++;
-	}
-	r[res_idx] = '\0';
+
+	r[i] = '\0';
 	rev_string(r);
 
 	return (r);
@@ -65,7 +47,7 @@ int string_len(char *s)
 {
 	int idx = 0;
 
-	while (s[idx] != '\0')
+	while (s[idx])
 		idx++;
 	return (idx);
 }
@@ -76,18 +58,13 @@ int string_len(char *s)
  */
 void rev_string(char *s)
 {
-	int i = 0, idx = 0;
-	char temp;
+	int len = string_len(s), i;
+	char tmp;
 
-	while (s[idx] != '\0')
+	for (i = 0; i < len / 2; i++)
 	{
-		idx++;
-	}
-	while (i < idx)
-	{
-		temp = s[i];
-		s[i] = s[--idx];
-		s[idx] = temp;
-		i++;
+		tmp = s[i];
+		s[i] = s[len - i - 1];
+		s[len - i - 1] = tmp;
 	}
 }
