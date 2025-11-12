@@ -1,5 +1,3 @@
-#include "main.h"
-
 /**
  * _strncpy - copy a string
  * @dest: destination string
@@ -12,7 +10,7 @@ char *_strncpy(char *dest, char *src, int n)
 {
 	int idx = 0;
 
-	while (src[idx] != '\0' && idx < n)
+	while (src[idx] && idx < n)
 	{
 		dest[idx] = src[idx];
 		idx++;

@@ -1,5 +1,3 @@
-#include "main.h"
-
 /**
  * _strcat - concatenates two strings
  * @dest: destination string
@@ -11,9 +9,9 @@ char *_strcat(char *dest, char *src)
 {
 	int idx = 0, jdx = 0;
 
-	while (dest[idx] != '\0')
+	while (dest[idx])
 		idx++;
-	while (src[jdx] != '\0')
+	while (src[jdx])
 		dest[idx++] = src[jdx++];
 	dest[idx] = '\0';
 
