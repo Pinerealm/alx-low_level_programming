@@ -1,5 +1,3 @@
-#include "main.h"
-
 /**
  * leet - encodes a string into 1337
  * @s: string to modify
@@ -10,20 +8,21 @@
  */
 char *leet(char *s)
 {
-	int idx = 0, ldx;
-	char *leet = "aeotl", *leet_num = "43071";
+	int idx = 0, lidx;
+	char letters[] = "aeotlAEOTL";
+	char numbers[] = "4307143071";
 
-	while (s[idx] != '\0')
+	while (s[idx])
 	{
-		ldx = 0;
-		while (leet[ldx] != '\0')
+		for (lidx = 0; letters[lidx]; lidx++)
 		{
-			if (s[idx] == leet[ldx] || s[idx] == leet[ldx] - 32)
-				s[idx] = leet_num[ldx];
-			ldx++;
+			if (s[idx] == letters[lidx])
+			{
+				s[idx] = numbers[lidx];
+				break;
+			}
 		}
 		idx++;
 	}
-
 	return (s);
 }
