@@ -1,5 +1,3 @@
-#include "main.h"
-
 /**
  * _memcpy - copies the first n bytes from memory area src to memory area dest
  *
