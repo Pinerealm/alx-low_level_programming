@@ -30,8 +30,8 @@ int main(int argc, char *argv[])
 	{
 		if (num >= coin_vals[idx])
 		{
-			num -= coin_vals[idx];
-			coins++;
+			coins += num / coin_vals[idx];
+			num %= coin_vals[idx];
 		}
 		else
 			idx++;
