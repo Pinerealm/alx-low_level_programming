@@ -1,6 +1,4 @@
-#include "main.h"
-
-int cmp_letters(char *s, int n);
+int cmp_letters(char *s, int start, int end);
 int _strlen_recursion(char *s);
 
 /**
@@ -12,9 +10,16 @@ int _strlen_recursion(char *s);
 
 int is_palindrome(char *s)
 {
-	int len = _strlen_recursion(s);
+	int len = 0;
+	char *start = s;
 
-	return (cmp_letters(s, len - 1));
+	while (*start++)
+		len++;
+
+	if (len == 0)
+		return (1);
+
+	return (cmp_letters(s, 0, len - 1));
 }
 
 /**
@@ -25,32 +30,13 @@ int is_palindrome(char *s)
  * Return: 1 if compared letters are the same, otherwise 0
  */
 
-int cmp_letters(char *s, int n)
+int cmp_letters(char *s, int start, int end)
 {
-	if (n < 1)
-	{
+	if (start >= end)
 		return (1);
-	}
 
-	if (*s == *(s + n))
-	{
-		return (cmp_letters(s + 1, n - 2));
-	}
-	return (0);
-}
-
-/**
- * _strlen_recursion - get string length by recursion
- * @s: pointer to string
- *
- * Return: string length
- */
-
-int _strlen_recursion(char *s)
-{
-	if (!*s)
-	{
+	if (s[start] != s[end])
 		return (0);
-	}
-	return (1 + _strlen_recursion(++s));
+
+	return (cmp_letters(s, start + 1, end - 1));
 }
