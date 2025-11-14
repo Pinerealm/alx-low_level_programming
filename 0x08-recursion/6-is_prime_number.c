@@ -1,4 +1,3 @@
-#include "main.h"
 int is_prime(int n, int i);
 
 /**
@@ -9,7 +8,13 @@ int is_prime(int n, int i);
  */
 int is_prime_number(int n)
 {
-	return (is_prime(n, 2));
+	if (n <= 1)
+		return (0);
+	if (n == 2)
+		return (1);
+	if (n % 2 == 0)
+		return (0);
+	return (is_prime(n, 3));
 }
 
 /**
@@ -21,11 +26,9 @@ int is_prime_number(int n)
  */
 int is_prime(int n, int i)
 {
-	if (n <= 1)
-		return (0);
-	if (n == i)
+	if (i * i > n)
 		return (1);
 	if (n % i == 0)
 		return (0);
-	return (is_prime(n, i + 1));
+	return (is_prime(n, i + 2));
 }
