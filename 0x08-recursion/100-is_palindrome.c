@@ -10,11 +10,7 @@ int _strlen_recursion(char *s);
 
 int is_palindrome(char *s)
 {
-	int len = 0;
-	char *start = s;
-
-	while (*start++)
-		len++;
+	int len = _strlen_recursion(s);
 
 	if (len == 0)
 		return (1);
@@ -39,4 +35,20 @@ int cmp_letters(char *s, int start, int end)
 		return (0);
 
 	return (cmp_letters(s, start + 1, end - 1));
+}
+
+/**
+ * _strlen_recursion - get string length by recursion
+ * @s: pointer to string
+ *
+ * Return: string length
+ */
+
+int _strlen_recursion(char *s)
+{
+	if (!*s)
+	{
+		return (0);
+	}
+	return (1 + _strlen_recursion(++s));
 }
