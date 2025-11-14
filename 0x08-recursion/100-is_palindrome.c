@@ -21,7 +21,8 @@ int is_palindrome(char *s)
 /**
  * cmp_letters - compares letters at the beginning and end of strings
  * @s: pointer to string
- * @n: number added to current string position
+ * @start: starting index
+ * @end: ending index
  *
  * Return: 1 if compared letters are the same, otherwise 0
  */
