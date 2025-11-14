@@ -1,4 +1,3 @@
-#include "main.h"
 int sqrt_helper(int n, int i);
 
 /**
@@ -13,7 +12,7 @@ int _sqrt_recursion(int n)
 }
 
 /**
- * sqrt_helper - finds the natural square root of a number
+ * sqrt_helper - helper function to find the square root
  * @n: number
  * @i: test number
  *
