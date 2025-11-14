@@ -16,8 +16,8 @@ int wildcmp(char *s1, char *s2)
 	/* Skip consecutive '*' in s2 */
 	if (*s2 == '*')
 	{
-		while (*(s2 + 1) == '*')
-			s2++;
+		if (*(s2 + 1) == '*')
+			return (wildcmp(s1, s2 + 1));
 
 		/* Wildcard at the end of s2 matches remaining s1 */
 		if (*(s2 + 1) == '\0')
