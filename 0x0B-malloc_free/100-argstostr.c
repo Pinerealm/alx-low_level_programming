@@ -1,4 +1,3 @@
-#include "main.h"
 #include <stdlib.h>
 
 /**
@@ -18,13 +17,11 @@ char *argstostr(int ac, char **av)
 	while (i < ac)
 	{
 		tmp_arg = av[i];
-		while (*tmp_arg)
-		{
+		while (*tmp_arg++)
 			len++;
-			tmp_arg++;
-		}
 		i++;
 	}
+
 	arg_str = malloc(sizeof(char) * (len + ac + 1));
 	if (!arg_str)
 		return (NULL);
@@ -34,10 +31,7 @@ char *argstostr(int ac, char **av)
 	{
 		tmp_arg = av[i];
 		while (*tmp_arg)
-		{
-			arg_str[idx++] = *tmp_arg;
-			tmp_arg++;
-		}
+			arg_str[idx++] = *tmp_arg++;
 		arg_str[idx++] = '\n';
 		i++;
 	}
