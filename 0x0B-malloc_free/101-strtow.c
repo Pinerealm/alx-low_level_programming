@@ -1,5 +1,5 @@
-#include "main.h"
 #include <stdlib.h>
+
 int get_word_count(char *str);
 char *_strcpy(char *dest, char *src);
 
@@ -11,45 +11,48 @@ char *_strcpy(char *dest, char *src);
  */
 char **strtow(char *str)
 {
-	char **words_array = NULL, tmp[100], *word;
-	int idx = 0, word_len, word_count = 0;
+	char **words_array = NULL;
+	int idx = 0, word_count = 0;
 
 	if (str == NULL || *str == '\0')
 		return (NULL);
+
 	word_count = get_word_count(str);
+	if (word_count == 0)
+		return (NULL);
+
 	words_array = malloc(sizeof(char *) * (word_count + 1));
-	if (words_array == NULL)
+	if (!words_array)
 		return (NULL);
 
 	while (*str)
 	{
-		if (*str == ' ')
+		while (*str == ' ')
 			str++;
-		else
+
+		if (*str)
 		{
-			word_len = 0;
-			while (*str != ' ' && *str != '\0')
+			int j, len = 0;
+
+			while (str[len] && str[len] != ' ')
+				len++;
+
+			words_array[idx] = malloc(len + 1);
+			if (!words_array[idx])
 			{
-				tmp[word_len++] = *str;
-				str++;
-			}
-			tmp[word_len] = '\0';
-			word = malloc(sizeof(char) * (word_len + 1));
-			if (word == NULL)
-			{
-				while (idx >= 0)
-					free(words_array[idx--]);
+				while (idx > 0)
+					free(words_array[--idx]);
 				free(words_array);
 				return (NULL);
 			}
-			word = _strcpy(word, tmp);
-			words_array[idx++] = word;
+
+			for (j = 0; j < len; j++)
+				words_array[idx][j] = str[j];
+			words_array[idx][j] = '\0';
+
+			str += len;
+			idx++;
 		}
-	}
-	if (idx == 0)
-	{
-		free(words_array);
-		return (NULL);
 	}
 	words_array[idx] = NULL;
 
@@ -64,34 +67,22 @@ char **strtow(char *str)
  */
 int get_word_count(char *str)
 {
-	int count = 0;
+	int count = 0, in_word = 0;
 
 	while (*str)
 	{
-		if (*str != ' ' && *(str + 1) == ' ')
-			count++;
+		if (*str != ' ')
+		{
+			if (!in_word)
+			{
+				in_word = 1;
+				count++;
+			}
+		}
+		else
+			in_word = 0;
+
 		str++;
 	}
 	return (count);
-}
-
-/**
- * _strcpy - copies the string pointed to by src to the buffer, dest
- * @dest: location to copy string to
- * @src: string to copy
- *
- * Return: pointer to dest
- */
-char *_strcpy(char *dest, char *src)
-{
-	int idx = 0;
-
-	while (src[idx] != '\0')
-	{
-		dest[idx] = src[idx];
-		idx++;
-	}
-	dest[idx] = '\0';
-
-	return (dest);
 }
