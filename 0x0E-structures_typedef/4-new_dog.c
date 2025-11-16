@@ -16,35 +16,32 @@ char *_strdup(char *str);
 
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *adog;
-	char *name_cp, *owner_cp;
+	dog_t *new;
 
 	if (!name || !owner)
 		return (NULL);
 
-	adog = malloc(sizeof(*adog));
-	if (!adog)
+	new = malloc(sizeof(dog_t));
+	if (!new)
 		return (NULL);
 
-	name_cp = _strdup(name);
-	if (!name_cp)
+	new->name = _strdup(name);
+	if (!new->name)
 	{
-		free(adog);
+		free(new);
 		return (NULL);
 	}
-	adog->name = name_cp;
 
-	owner_cp = _strdup(owner);
-	if (!owner_cp)
+	new->owner = _strdup(owner);
+	if (!new->owner)
 	{
-		free(adog->name);
-		free(adog);
+		free(new->name);
+		free(new);
 		return (NULL);
 	}
-	adog->owner = owner_cp;
-	adog->age = age;
+	new->age = age;
 
-	return (adog);
+	return (new);
 }
 
 /**
@@ -56,21 +53,20 @@ dog_t *new_dog(char *name, float age, char *owner)
 
 char *_strdup(char *str)
 {
-	char *ar;
-	int i, len_s;
+	char *copy;
+	int i, len;
 
 	if (!str)
-		return ('\0');
-	len_s = _strlen(str);
-	ar = malloc(sizeof(char) * len_s + 1);
-	if (ar == NULL)
-		return ('\0');
-	for (i = 0; i < len_s; i++)
-	{
-		ar[i] = str[i];
-	}
-	ar[i] = '\0';
-	return (ar);
+		return (NULL);
+	len = _strlen(str);
+	copy = malloc(len + 1);
+	if (!copy)
+		return (NULL);
+
+	for (i = 0; i <= len; i++)
+		copy[i] = str[i];
+
+	return (copy);
 }
 
 /**
@@ -82,10 +78,10 @@ char *_strdup(char *str)
 
 int _strlen(char *s)
 {
-	int cnt = 0;
+	int len = 0;
 
-	while (s[cnt] != '\0')
-		cnt++;
+	while (s[len])
+		len++;
 
-	return (cnt);
+	return (len);
 }
