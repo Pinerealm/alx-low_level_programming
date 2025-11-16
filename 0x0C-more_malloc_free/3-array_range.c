@@ -1,4 +1,3 @@
-#include "main.h"
 #include <stdlib.h>
 
 /**
@@ -17,7 +16,7 @@ int *array_range(int min, int max)
 		return (NULL);
 
 	num_array = malloc(sizeof(int) * (max - min + 1));
-	if (num_array == NULL)
+	if (!num_array)
 		return (NULL);
 
 	for (idx = 0; min <= max; idx++, min++)

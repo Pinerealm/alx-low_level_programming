@@ -1,4 +1,3 @@
-#include "main.h"
 #include <stdlib.h>
 
 /**
@@ -24,7 +23,7 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 
 	while (idx < elements)
 	{
-		*((char *)ptr + idx) = 0;
+		((char *)ptr)[idx] = 0;
 		idx++;
 	}
 

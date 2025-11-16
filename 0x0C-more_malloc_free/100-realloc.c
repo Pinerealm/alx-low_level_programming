@@ -1,4 +1,3 @@
-#include "main.h"
 #include <stdlib.h>
 void *_memcpy(void *dest, void *src, unsigned int n);
 
@@ -19,7 +18,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	if (ptr == NULL)
 	{
 		new_ptr = malloc(new_size);
-		if (new_ptr == NULL)
+		if (!new_ptr)
 			return (NULL);
 		return (new_ptr);
 	}
@@ -30,7 +29,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	}
 
 	new_ptr = malloc(new_size);
-	if (new_ptr == NULL)
+	if (!new_ptr)
 		return (NULL);
 
 	if (new_size > old_size)
