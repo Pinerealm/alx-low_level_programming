@@ -54,7 +54,9 @@ void print_magic(unsigned char *e_ident)
 
 	for (index = 0; index < EI_NIDENT; index++)
 	{
-		printf("%02x ", e_ident[index]);
+		if (index > 0)
+			printf(" ");
+		printf("%02x", e_ident[index]);
 	}
 	printf("\n");
 }
