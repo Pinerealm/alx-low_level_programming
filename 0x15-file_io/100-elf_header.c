@@ -16,6 +16,7 @@ void print_osabi(unsigned char *e_ident);
 void print_type(unsigned int e_type, unsigned char *e_ident);
 void print_entry(unsigned long int e_entry, unsigned char *e_ident);
 void close_elf(int elf);
+void display_elf_header(Elf64_Ehdr *header);
 
 /**
  * check_elf - Checks if a file is an ELF file.
@@ -272,6 +273,27 @@ void close_elf(int elf)
 }
 
 /**
+ * display_elf_header - Displays the information contained in the ELF header.
+ * @header: A pointer to the ELF header structure.
+ */
+void display_elf_header(Elf64_Ehdr *header)
+{
+	check_elf(header->e_ident);
+	printf("ELF Header:\n");
+	print_magic(header->e_ident);
+	print_class(header->e_ident);
+	print_data(header->e_ident);
+	print_version(header->e_ident);
+	print_osabi(header->e_ident);
+	print_abi(header->e_ident);
+	print_type(header->e_type, header->e_ident);
+	if (header->e_ident[EI_CLASS] == ELFCLASS32)
+		print_entry(((Elf32_Ehdr *)header)->e_entry, header->e_ident);
+	else
+		print_entry(header->e_entry, header->e_ident);
+}
+
+/**
  * main - Displays the information contained in the
  *        ELF header at the start of an ELF file.
  * @argc: The number of arguments supplied to the program.
@@ -307,19 +329,7 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 
-	check_elf(header->e_ident);
-	printf("ELF Header:\n");
-	print_magic(header->e_ident);
-	print_class(header->e_ident);
-	print_data(header->e_ident);
-	print_version(header->e_ident);
-	print_osabi(header->e_ident);
-	print_abi(header->e_ident);
-	print_type(header->e_type, header->e_ident);
-	if (header->e_ident[EI_CLASS] == ELFCLASS32)
-		print_entry(((Elf32_Ehdr *)header)->e_entry, header->e_ident);
-	else
-		print_entry(header->e_entry, header->e_ident);
+	display_elf_header(header);
 
 	free(header);
 	close_elf(o);
